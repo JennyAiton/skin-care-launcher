@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Skin Care</title>
+<meta name="theme-color" content="#FF8BC0">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" href="icon-192.png">
+<style>
+  :root{color-scheme:light}
+  *{box-sizing:border-box}
+  html,body{margin:0;min-height:100%;background:linear-gradient(180deg,#FFCFE6,#FFE6F2 45%,#FFF2D6);color:#3B1B47;font-family:"Trebuchet MS",system-ui,sans-serif}
+  main{max-width:420px;margin:0 auto;padding:40px 20px;text-align:center}
+  img{width:150px;height:150px;border-radius:34px;border:3px solid #3B1B47;box-shadow:0 6px 0 #3B1B47}
+  h1{margin:22px 0 6px;font-size:34px;color:#fff;text-shadow:2px 0 #3B1B47,-2px 0 #3B1B47,0 2px #3B1B47,0 -2px #3B1B47,0 5px 0 #3B1B47}
+  p{font-weight:700;line-height:1.4}
+  a.btn{display:inline-block;margin-top:14px;padding:12px 26px;border:3px solid #3B1B47;border-radius:999px;background:linear-gradient(#FF8BC0,#FF3E8A);color:#fff;font-size:18px;font-weight:800;text-decoration:none;text-shadow:0 1.5px 0 #3B1B47;box-shadow:0 5px 0 #3B1B47}
+  .how{margin-top:26px;background:#fff;border:3px solid #3B1B47;border-radius:20px;box-shadow:0 5px 0 #3B1B47;padding:12px 16px;text-align:left;font-weight:700;font-size:15px}
+  .how ol{margin:6px 0 0;padding-left:20px}
+</style>
+</head>
+<body>
+<main>
+  <img src="icon-512.png" alt="Skin Care icon">
+  <h1>Skin Care</h1>
+  <p id="msg">Your glow-up app.</p>
+  <a class="btn" id="go" href="https://claude.ai/artifact/NAQjphjQfwhb5fhUR4JZ4K">Open Skin Care</a>
+  <div class="how" id="how">Put this icon on your home screen:
+    <ol><li>Tap <b>⋮</b> (top right in Chrome).</li><li>Tap <b>Add to Home screen</b> or <b>Install app</b>.</li><li>Tap <b>Install</b> or <b>Add</b>.</li></ol>
+  </div>
+</main>
+<script>
+  if ('serviceWorker' in navigator) navigator.serviceWorker.register('sw.js').catch(function(){});
+  // Opened from the home-screen icon: go straight to the app.
+  var fromHome = /[?&]home=1/.test(location.search) || (window.matchMedia && matchMedia('(display-mode: standalone)').matches);
+  if (fromHome) {
+    document.getElementById('msg').textContent = 'Opening your app…';
+    document.getElementById('how').hidden = true;
+    location.replace(document.getElementById('go').href);
+  }
+</script>
+</body>
+</html>
